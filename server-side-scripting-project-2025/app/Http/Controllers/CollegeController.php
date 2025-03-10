@@ -21,12 +21,13 @@ class CollegeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|unique:colleges',
+            'name' => 'required|unique:colleges|max:255',
             'address' => 'required',
         ]);
 
         College::create($request->all());
-        return redirect()->route('colleges.index')->with('success', 'College added successfully!');
+        return redirect()->route('colleges.index')
+                        ->with('success', 'College added successfully!');
     }
 
     public function show(College $college)

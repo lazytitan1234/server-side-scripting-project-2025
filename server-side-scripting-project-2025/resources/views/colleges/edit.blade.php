@@ -15,13 +15,8 @@
             </div>
 
             <div class="mb-3">
-                <label for="location" class="form-label">Location</label>
-                <input type="text" class="form-control" id="location" name="location" value="{{ $college->location }}" required>
-            </div>
-
-            <div class="mb-3">
-                <label for="description" class="form-label">Description</label>
-                <textarea class="form-control" id="description" name="description" rows="3">{{ $college->description }}</textarea>
+                <label for="address" class="form-label">address</label>
+                <input type="text" class="form-control" id="address" name="address" value="{{ $college->address }}" required>
             </div>
 
             <button type="submit" class="btn btn-success">Update College</button>

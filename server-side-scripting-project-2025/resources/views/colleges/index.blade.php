@@ -12,7 +12,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
-                    <th>Location</th>
+                    <th>Address</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -21,7 +21,7 @@
                     <tr>
                         <td>{{ $college->id }}</td>
                         <td>{{ $college->name }}</td>
-                        <td>{{ $college->location }}</td>
+                        <td>{{ $college->address }}</td>
                         <td>
                             <a href="{{ route('colleges.show', $college->id) }}" class="btn btn-info btn-sm">View</a>
                             <a href="{{ route('colleges.edit', $college->id) }}" class="btn btn-warning btn-sm">Edit</a>

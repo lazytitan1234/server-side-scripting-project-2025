@@ -23,6 +23,7 @@
 </head>
 <body>
     <div id="app">
+        {{-- navigation Bar --}}
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">College Management</a>
@@ -44,7 +45,7 @@
 
         <main class="py-4">
             <div class="container">
-                {{-- ✅ SUCCESS MESSAGE ALERT --}}
+                {{-- flash messages for success --}}
                 @if (session('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         {{ session('success') }}
@@ -52,7 +53,7 @@
                     </div>
                 @endif
 
-                {{-- ✅ ERROR MESSAGE ALERT --}}
+                {{-- flash messages for errors --}}
                 @if (session('error'))
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         {{ session('error') }}
@@ -60,7 +61,7 @@
                     </div>
                 @endif
 
-                {{-- ✅ FORM VALIDATION ERRORS --}}
+                {{-- form validation error messages --}}
                 @if ($errors->any())
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <ul>
@@ -72,7 +73,7 @@
                     </div>
                 @endif
 
-                {{-- ✅ PAGE CONTENT --}}
+                {{-- main page content will be inserted here --}}
                 @yield('content')
             </div>
         </main>
@@ -81,7 +82,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        // Auto-dismiss alerts after 3 seconds
+        // Auto-hide alerts after 3 seconds
         document.querySelectorAll('.alert').forEach(alert => {
             setTimeout(() => {
                 alert.classList.add('fade');
@@ -89,7 +90,7 @@
             }, 3000);
         });
 
-        // Confirm delete action
+        // Ask for confirmation before deleting records
         document.querySelectorAll('.delete-form').forEach(form => {
             form.addEventListener('submit', function (e) {
                 if (!confirm('Are you sure you want to delete this record?')) {

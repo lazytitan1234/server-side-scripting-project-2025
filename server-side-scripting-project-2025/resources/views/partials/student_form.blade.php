@@ -1,9 +1,10 @@
 <form action="{{ isset($student) ? route('students.update', $student->id) : route('students.store') }}" method="POST">
     @csrf
     @if (isset($student))
-        @method('PUT')
+        @method('PUT') {{-- Use PUT for updates --}}
     @endif
 
+    {{-- Student Name --}}
     <div class="mb-3">
         <label for="name" class="form-label">Student Name</label>
         <input type="text" name="name" id="name" class="form-control" 
@@ -11,6 +12,7 @@
         @error('name') <small class="text-danger">{{ $message }}</small> @enderror
     </div>
 
+    {{-- Email Address --}}
     <div class="mb-3">
         <label for="email" class="form-label">Email</label>
         <input type="email" name="email" id="email" class="form-control" 
@@ -18,6 +20,7 @@
         @error('email') <small class="text-danger">{{ $message }}</small> @enderror
     </div>
 
+    {{-- Phone Number --}}
     <div class="mb-3">
         <label for="phone" class="form-label">Phone</label>
         <input type="text" name="phone" id="phone" class="form-control" 
@@ -25,6 +28,7 @@
         @error('phone') <small class="text-danger">{{ $message }}</small> @enderror
     </div>
 
+    {{-- Date of Birth --}}
     <div class="mb-3">
         <label for="dob" class="form-label">Date of Birth</label>
         <input type="date" name="dob" id="dob" class="form-control" 
@@ -32,6 +36,7 @@
         @error('dob') <small class="text-danger">{{ $message }}</small> @enderror
     </div>
 
+    {{-- College Selection --}}
     <div class="mb-3">
         <label for="college_id" class="form-label">College</label>
         <select name="college_id" id="college_id" class="form-control" required>
@@ -46,6 +51,7 @@
         @error('college_id') <small class="text-danger">{{ $message }}</small> @enderror
     </div>
 
+    {{-- Submit Button (changes text based on create or edit) --}}
     <button type="submit" class="btn btn-primary">
         {{ isset($student) ? 'Update Student' : 'Add Student' }}
     </button>

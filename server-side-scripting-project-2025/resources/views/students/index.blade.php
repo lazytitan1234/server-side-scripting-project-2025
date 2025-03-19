@@ -6,7 +6,7 @@
     
     <a href="{{ route('students.create') }}" class="btn btn-primary mb-3">Add Student</a>
 
-    {{-- Include filtering and sorting --}}
+    {{-- filtering by college and sorting by name --}}
     @include('partials.filter')
     @include('partials.sort')
 

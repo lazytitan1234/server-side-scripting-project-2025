@@ -7,5 +7,5 @@ use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController
 {
-    use ValidatesRequests;
+    use ValidatesRequests; //handles form validation for all controllers saves typing it in each one
 }

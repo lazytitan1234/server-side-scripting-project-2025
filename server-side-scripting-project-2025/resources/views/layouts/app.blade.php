@@ -44,17 +44,7 @@
 
         <main class="py-4">
             <div class="container">
-                @if (session('success'))
-                    <div id="toast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
-                        <div class="d-flex">
-                            <div class="toast-body">
-                                {{ session('success') }}
-                            </div>
-                            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-                        </div>
-                    </div>
-                @endif
-
+                {{-- ✅ SUCCESS MESSAGE ALERT --}}
                 @if (session('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         {{ session('success') }}
@@ -62,6 +52,7 @@
                     </div>
                 @endif
 
+                {{-- ✅ ERROR MESSAGE ALERT --}}
                 @if (session('error'))
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         {{ session('error') }}
@@ -69,6 +60,19 @@
                     </div>
                 @endif
 
+                {{-- ✅ FORM VALIDATION ERRORS --}}
+                @if ($errors->any())
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
+                {{-- ✅ PAGE CONTENT --}}
                 @yield('content')
             </div>
         </main>
@@ -77,6 +81,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
+        // Auto-dismiss alerts after 3 seconds
         document.querySelectorAll('.alert').forEach(alert => {
             setTimeout(() => {
                 alert.classList.add('fade');
@@ -84,6 +89,7 @@
             }, 3000);
         });
 
+        // Confirm delete action
         document.querySelectorAll('.delete-form').forEach(form => {
             form.addEventListener('submit', function (e) {
                 if (!confirm('Are you sure you want to delete this record?')) {
@@ -91,12 +97,6 @@
                 }
             });
         });
-
-        const toastEl = document.getElementById('toast');
-        if (toastEl) {
-            const toast = new bootstrap.Toast(toastEl);
-            toast.show();
-        }
     </script>
 </body>
 </html>

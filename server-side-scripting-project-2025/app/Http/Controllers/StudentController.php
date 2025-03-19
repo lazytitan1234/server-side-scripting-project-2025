@@ -8,12 +8,21 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $students = Student::with('college')->get();
-        return view('students.index', compact('students'));
+        $colleges = College::all();
+        $collegeId = $request->input('college_id');
+        $sortBy = $request->input('sort_by', 'asc');
+    
+        $students = Student::when($collegeId, function ($query, $collegeId) {
+                return $query->where('college_id', $collegeId);
+            })
+            ->orderBy('name', $sortBy)
+            ->get();
+    
+        return view('students.index', compact('students', 'colleges'));
     }
-
+    
     public function create()
     {
         $colleges = College::all();

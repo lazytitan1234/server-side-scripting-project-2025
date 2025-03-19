@@ -7,12 +7,15 @@ use Illuminate\Http\Request;
 
 class CollegeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $colleges = College::all();
+        $sortBy = $request->input('sort_by', 'asc');
+    
+        $colleges = College::orderBy('name', $sortBy)->get();
+    
         return view('colleges.index', compact('colleges'));
     }
-
+    
     public function create()
     {
         return view('colleges.create');

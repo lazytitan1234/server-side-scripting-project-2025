@@ -3,7 +3,12 @@
 @section('content')
 <div class="container">
     <h1 class="my-4">Students</h1>
+    
     <a href="{{ route('students.create') }}" class="btn btn-primary mb-3">Add Student</a>
+
+    {{-- Include filtering and sorting --}}
+    @include('partials.filter')
+    @include('partials.sort')
 
     <table class="table table-striped">
         <thead>
@@ -17,7 +22,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($students as $student)
+            @forelse ($students as $student)
                 <tr>
                     <td>{{ $student->name }}</td>
                     <td>{{ $student->email }}</td>
@@ -33,7 +38,11 @@
                         </form>
                     </td>
                 </tr>
-            @endforeach
+            @empty
+                <tr>
+                    <td colspan="6" class="text-center">No students found.</td>
+                </tr>
+            @endforelse
         </tbody>
     </table>
 </div>
